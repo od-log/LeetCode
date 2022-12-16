@@ -3,10 +3,15 @@
  * @return {number}
  */
 var missingNumber = function(nums) {
-    let min = Math.min(...nums);
-    if (min > 0) return 0;
-    while (true) { 
-        min += 1; 
-        if (nums.indexOf(min) === -1) return min;
+    const sortedNums = Array.isArray(nums) && nums.sort((a,b)=> a-b);
+    let min = 0;
+    
+    for(item of sortedNums) {
+    
+        if(item > min){
+            return min;
+        }
+        min += 1;
     }
+    return min;
 };
